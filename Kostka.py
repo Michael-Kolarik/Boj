@@ -26,9 +26,9 @@ class Kostka:  # Tahle třída jen definuje házení kostkou
             vystup = prvnihod
         return vystup
     def vyhodnoceni(self, vyhoda):
-        if vyhoda == -1:
+        if vyhoda > 0:
             hod = self.vyhoda()
-        elif vyhoda == 1:
+        elif vyhoda < 0:
             hod = self.nevyhoda()
         else:
             hod = self.hod()
