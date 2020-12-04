@@ -11,6 +11,9 @@ class Hrdina:
         self.__vyhoda_utok = 0
         self.__zraneni = Kostka(10)
         self.__manevr = False
+        self.__druhy_dech = 1
+        self.__akcni_vlna = 1
+        self._kostky_manevru
 
     @property
     def vyhoda_obrana(self):
@@ -42,36 +45,31 @@ class Hrdina:
         print("Chceš použít riskantní útok? A - Ano, N - Ne")
         riskantni_utok = input()
         if riskantni_utok == "A":
-            if hod_kostkou == 20:
-                print("Tvůj bojovník zasáhl.")
-                zraneni = self.__zraneni.hod() + self.__zraneni.hod() + 13
-                cil.prijmi_zraneni(zraneni)
-                self.__manevr = True
-            elif hod_kostkou + 1 >= cil.obranne_cislo:
-                print("Tvůj bojovník zasáhl.")
-                zraneni = self.__zraneni.hod() + 13
-                cil.prijmi_zraneni(zraneni)
-                if hod_kostkou - 4 >= cil.obranne_cislo:
-                    self.__manevr = True
-            else:
-                print("Tvůj bojovník minul.")
+            bonus_k_utoku = 1
+            bonus_ke_zraneni = 13
         else:
-            if hod_kostkou == 20:
-                print("Tvůj bojovník zasáhl.")
-                zraneni = self.__zraneni.hod() + self.__zraneni.hod() + 3
-                cil.prijmi_zraneni(zraneni)
+            bonus_k_utoku = 6
+            bonus_ke_zraneni = 3
+        if hod_kostkou == 20:
+            print("Tvůj bojovník zasáhl.")
+            zraneni = self.__zraneni.hod() + self.__zraneni.hod() + bonus_ke_zraneni
+            cil.prijmi_zraneni(zraneni)
+            self.__manevr = True
+        elif hod_kostkou + bonus_k_utoku >= cil.obranne_cislo:
+            print("Tvůj bojovník zasáhl.")
+            zraneni = self.__zraneni.hod() + bonus_ke_zraneni
+            cil.prijmi_zraneni(zraneni)
+            if hod_kostkou + bonus_k_utoku >= cil.obranne_cislo + 5:
                 self.__manevr = True
-            elif hod_kostkou + 6 >= cil.obranne_cislo:
-                print("Tvůj bojovník zasáhl.")
-                zraneni = self.__zraneni.hod() + 3
-                cil.prijmi_zraneni(zraneni)
-                if hod_kostkou + 1 >= cil.obranne_cislo:
-                    self.__manevr = True
-            else:
-                print("Tvůj bojovník minul.")
+        else:
+            print("Tvůj bojovník minul.")
+
     def akce(self):
         print("Rozhodni, co bojovník udělá.")
-        print("Bude útočit")
+        print("Bude útočit - stiskni U")
+        print("Bude se bránit - stiskni O")
+        volba = input()
+
 
 
 
