@@ -13,7 +13,7 @@ class Hrdina:
         self.__manevr = False
         self.__druhy_dech = 1
         self.__akcni_vlna = 1
-        self._kostky_manevru
+        self._kostky_manevru = 4
 
     @property
     def vyhoda_obrana(self):
